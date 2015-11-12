@@ -1,6 +1,5 @@
 package com.jrtech.tools.admins;
 
-import com.jrtech.tools.admins.presenter.AdministrativePresenter;
 import com.jrtech.tools.admins.views.AdministrativeView;
 import com.jrtech.tools.admins.views.AdministrativeViewImpl;
 import com.jrtech.tools.admins.views.HomeView;
@@ -23,17 +22,14 @@ public class ApplicationUI extends UI {
 	private static final long serialVersionUID = -5409989130902765611L;
 
 	private Log log = LogFactory.getLog(ApplicationUI.class);
-	
-	@Autowired
-	private AdministrativePresenter presenter;
+
+    @Autowired
+    private AdministrativeView view;
 
 	@Override
 	protected void init(VaadinRequest request) {
 		getPage().setTitle("行政区划查询工具-Administrative tools");
 		Navigator nav = new Navigator(this, this);
-
-        AdministrativeView view = new AdministrativeViewImpl();
-        presenter.setView(view);
 
         nav.addView("", HomeView.class);
         nav.addView(IPView.NAME, IPView.class);

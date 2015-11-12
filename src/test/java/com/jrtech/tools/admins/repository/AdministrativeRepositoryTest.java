@@ -15,7 +15,7 @@ import com.jrtech.tools.admins.domain.Administrative;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes=ApplicationConfiguration.class)
-public class AdministrativesRepositoryTest {
+public class AdministrativeRepositoryTest {
 	
 	static final String EXP_CODE = "110000000000";
 	static final String EXP_NAME = "北京市";
@@ -33,8 +33,8 @@ public class AdministrativesRepositoryTest {
 	}
 
 	@Test
-	public void testFindAdministrativesByName() {
-		List<Administrative> admins = repo.findAdministrativesByName(EXP_NAME);
+	public void testFindAdministrativeByName() {
+		List<Administrative> admins = repo.findByName(EXP_NAME);
 		
 		assertNotNull(admins);
 		assertEquals(1, admins.size());
