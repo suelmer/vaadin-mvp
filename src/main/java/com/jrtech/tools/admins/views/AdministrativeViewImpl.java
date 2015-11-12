@@ -35,11 +35,12 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
         tree.addExpandListener(this);
         panel.setFirstComponent(tree);
 
+
         Panel map = new Panel();
         panel.setSecondComponent(map);
 
 		
-		for (EnterViewListener listener : evList){
+		for (AdministrativeViewListener listener : listeners){
 			listener.enterView();
 		}
 		
@@ -47,7 +48,7 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
 
 	@Override
 	public void nodeExpand(ExpandEvent event) {
-		for (ItemExpandListener listener : exList) {
+		for (AdministrativeViewListener listener : listeners) {
             listener.nodeExpand((String)event.getItemId());
         }
 	}
@@ -66,7 +67,7 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
 	}
 
 	@Override
-	public void expandView(Administrative parent) {
+	public void expandNode(Administrative parent) {
         if (null != parent)
 		    fillChildren(parent.getCode(), parent.getChildren());
 	}
@@ -80,16 +81,9 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
         }
     }
 
-	private List<EnterViewListener> evList = new ArrayList<EnterViewListener>();
-	@Override
-	public void addInitListener(EnterViewListener evListener) {
-		evList.add(evListener);		
-	}
-
-    private List<ItemExpandListener> exList = new ArrayList<>();
-	@Override
-	public void addExpandListener(ItemExpandListener ieListener) {
-		exList.add(ieListener);
-	}
-
+	private List<AdministrativeViewListener> listeners = new ArrayList<AdministrativeViewListener>();
+    @Override
+    public void addListener(AdministrativeViewListener listener) {
+        listeners.add(listener);
+    }
 }

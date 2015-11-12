@@ -13,7 +13,7 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @Component
-public class AdministrativePresenter implements AdministrativeView.EnterViewListener, AdministrativeView.ItemExpandListener {
+public class AdministrativePresenter implements Presenter<AdministrativeView>, AdministrativeView.AdministrativeViewListener {
 
     private AdministrativeView view;
     @Autowired
@@ -26,8 +26,7 @@ public class AdministrativePresenter implements AdministrativeView.EnterViewList
     @Autowired
     public void setView(AdministrativeView view) {
         this.view = view;
-        this.view.addInitListener(this);
-        this.view.addExpandListener(this);
+        this.view.addListener(this);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class AdministrativePresenter implements AdministrativeView.EnterViewList
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus arg0) {
                 Administrative admin = adminRepo.findOne(itemId);
-                view.expandView(admin);
+                view.expandNode(admin);
             }
         });
     }

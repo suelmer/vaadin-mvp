@@ -2,18 +2,13 @@ package com.jrtech.tools.admins.views;
 
 import com.jrtech.tools.admins.domain.Administrative;
 import com.jrtech.tools.admins.domain.Country;
-import com.vaadin.navigator.View;
 
-public interface AdministrativeView extends View {
-	interface ItemExpandListener {
+public interface AdministrativeView extends PresentableView<AdministrativeView.AdministrativeViewListener> {
+	interface AdministrativeViewListener extends ViewListener {
 		void nodeExpand(String itemId);
+        void enterView();
 	}
-	interface EnterViewListener {
-		void enterView();
-	}
-	
-	void addInitListener(EnterViewListener evListener);
-	void addExpandListener(ItemExpandListener ieListener);
+
 	void initView(Country root);
-	void expandView(Administrative parent);
+	void expandNode(Administrative parent);
 }
