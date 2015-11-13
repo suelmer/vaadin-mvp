@@ -9,7 +9,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.Tree.ExpandEvent;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
 	private HorizontalSplitPanel panel;
 
 	@Override
-    @Transactional
 	public void enter(ViewChangeEvent event) {
 		panel = new HorizontalSplitPanel();
 		panel.setSplitPosition(25, Unit.PERCENTAGE);
@@ -48,6 +46,10 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
 
 	@Override
 	public void nodeExpand(ExpandEvent event) {
+		if (tree.isRoot(event.getItemId())) {
+			return;
+		}
+		
 		for (AdministrativeViewListener listener : listeners) {
             listener.nodeExpand((String)event.getItemId());
         }

@@ -24,7 +24,7 @@ public class HomeView extends VerticalLayout implements View {
 		Layout navLayout = new HorizontalLayout();
 		navLayout.addComponent(new Button("行政区划查询", (e) -> UI.getCurrent().getNavigator().navigateTo(AdministrativeViewImpl.NAME)));
 		navLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
-		navLayout.addComponent(new Button("IP地址查询", (e) -> UI.getCurrent().getNavigator().navigateTo(IPView.NAME)));
+		navLayout.addComponent(new Button("IP地址查询", (e) -> UI.getCurrent().getNavigator().navigateTo(IpViewImpl.NAME)));
 
 		addComponent(navLayout);
 	}

@@ -1,6 +1,9 @@
 package com.jrtech.tools.admins.repository;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.After;
@@ -34,7 +37,7 @@ public class AdministrativeRepositoryTest {
 
 	@Test
 	public void testFindAdministrativeByName() {
-		List<Administrative> admins = repo.findByName(EXP_NAME);
+		List<Administrative> admins = repo.findAdministrativeByName(EXP_NAME);
 		
 		assertNotNull(admins);
 		assertEquals(1, admins.size());
@@ -49,10 +52,10 @@ public class AdministrativeRepositoryTest {
 	@Transactional
 	public void testFindOne() {
 		Administrative admin = repo.findOne(EXP_CODE);
-		
 		assertNotNull(admin);
 		assertEquals(EXP_CODE, admin.getCode());
 		assertEquals(EXP_NAME, admin.getName());
+		assertFalse(admin.getChildren().isEmpty());
 		assertEquals(CHILD_COUNT, admin.getChildren().size());
 	}
 	

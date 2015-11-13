@@ -1,31 +1,26 @@
 package com.jrtech.tools.admins.views;
 
-import com.jrtech.tools.admins.domain.Administrative;
-import com.jrtech.tools.admins.repository.AdministrativeRepository;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Component;
 
-@SpringView(name = IPView.NAME)
-public class IPView extends CustomComponent implements View {
+@Component
+public class IpViewImpl extends CustomComponent implements IpView, Button.ClickListener {
 	
 	private static final long serialVersionUID = -6554545251483682858L;
 	public static final String NAME = "ipView";
-	private Log log = LogFactory.getLog(IPView.class);
-
-	@Autowired
-	private AdministrativeRepository repository;
+	private Log log = LogFactory.getLog(IpViewImpl.class);
 
 	@Override
 	public void enter(ViewChangeEvent event) {
@@ -41,16 +36,25 @@ public class IPView extends CustomComponent implements View {
 		Panel map = new Panel();
 		layout.addComponent(map);
 
-		layout.addComponent(new Button("查找Shawn", new Button.ClickListener() {
-			private static final long serialVersionUID = 1L;
+		layout.addComponent(new Button("查找Shawn", this));
+	}
 
-			@Override
-			public void buttonClick(Button.ClickEvent clickEvent) {
-				for (Administrative admin : repository.findAll(new PageRequest(5,500))) {
-					log.info(admin.toString());
-				}
-			}
-		}));
+	private List<IpViewListener> listeners = new ArrayList<IpViewListener>();
+	@Override
+	public void addListener(IpViewListener listener) {
+		this.listeners.add(listener);
+	}
+
+	@Override
+	public void buttonClick(ClickEvent event) {
+		for (IpView.IpViewListener listener : listeners) {
+			listener.queryButtonClicked();
+		}
+	}
+
+	@Override
+	public void updateQueryResult(String ipRange) {
+		log.info(String.format("Query result: %s", ipRange));
 	}
 
 }

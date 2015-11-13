@@ -3,7 +3,8 @@ package com.jrtech.tools.admins;
 import com.jrtech.tools.admins.views.AdministrativeView;
 import com.jrtech.tools.admins.views.AdministrativeViewImpl;
 import com.jrtech.tools.admins.views.HomeView;
-import com.jrtech.tools.admins.views.IPView;
+import com.jrtech.tools.admins.views.IpView;
+import com.jrtech.tools.admins.views.IpViewImpl;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
@@ -24,7 +25,9 @@ public class ApplicationUI extends UI {
 	private Log log = LogFactory.getLog(ApplicationUI.class);
 
     @Autowired
-    private AdministrativeView view;
+    private AdministrativeView adminView;
+    @Autowired
+    private IpView ipView;
 
 	@Override
 	protected void init(VaadinRequest request) {
@@ -32,8 +35,8 @@ public class ApplicationUI extends UI {
 		Navigator nav = new Navigator(this, this);
 
         nav.addView("", HomeView.class);
-        nav.addView(IPView.NAME, IPView.class);
-		nav.addView(AdministrativeViewImpl.NAME, view);
+        nav.addView(IpViewImpl.NAME, ipView);
+		nav.addView(AdministrativeViewImpl.NAME, adminView);
 
         this.setNavigator(nav);
 

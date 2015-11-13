@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AdministrativeRepository extends PagingAndSortingRepository <Administrative, String> {
-    List<Administrative> findByName(String name);
+    List<Administrative> findAdministrativeByName(String name);
 }
