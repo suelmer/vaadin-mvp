@@ -11,10 +11,14 @@ import com.jrtech.tools.admins.repository.CountryRepository;
 @Service
 public class AdministrativeServiceImpl implements AdministrativeService {
 
-	@Autowired
 	private CountryRepository countryRepo;
-	@Autowired
 	private AdministrativeRepository adminRepo;
+
+    @Autowired
+    public AdministrativeServiceImpl(CountryRepository countryRepo, AdministrativeRepository adminRepo) {
+        this.countryRepo = countryRepo;
+        this.adminRepo = adminRepo;
+    }
 	
 	@Override
 	@Transactional

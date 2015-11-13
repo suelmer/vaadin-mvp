@@ -11,8 +11,12 @@ import org.springframework.stereotype.Component;
 public class AdministrativeViewPresenter implements ViewPresenter<AdministrativeView>, AdministrativeView.AdministrativeViewListener {
 
     private AdministrativeView view;
-    @Autowired
     private AdministrativeService service;
+
+    @Autowired
+    public AdministrativeViewPresenter(AdministrativeService service) {
+        this.service = service;
+    }
 
     @Autowired
     @Override
