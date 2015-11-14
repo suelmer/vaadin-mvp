@@ -1,7 +1,6 @@
 package com.jrtech.tools.admins.views;
 
-import com.jrtech.tools.admins.domain.Administrative;
-import com.jrtech.tools.admins.domain.Country;
+import com.jrtech.tools.admins.domain.Area;
 
 public interface AdministrativeView extends PresentableView<AdministrativeView.AdministrativeViewListener> {
 	interface AdministrativeViewListener extends ViewListener {
@@ -9,6 +8,6 @@ public interface AdministrativeView extends PresentableView<AdministrativeView.A
         void enterView();
 	}
 
-	void initView(Country root);
-	void expandNode(Administrative parent);
+	void initView(Area root);
+	void expandNode(Area parent);
 }
