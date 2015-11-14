@@ -32,15 +32,13 @@ public class AdministrativeViewImpl extends CustomComponent implements Tree.Expa
 
         Panel treePanel = new Panel();
         treePanel.setContent(tree);
+        treePanel.setHeight(UI.getCurrent().getPage().getBrowserWindowHeight(), Unit.PIXELS);
 
         panel.setFirstComponent(treePanel);
-        treePanel.setSizeFull();
-
 
         Panel map = new Panel();
         panel.setSecondComponent(map);
-        panel.setSizeFull();
-
+        map.setHeight(UI.getCurrent().getPage().getBrowserWindowHeight(), Unit.PIXELS);
 		
 		for (AdministrativeViewListener listener : listeners){
 			listener.enterView();
