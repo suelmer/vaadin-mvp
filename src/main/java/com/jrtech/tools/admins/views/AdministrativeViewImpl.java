@@ -2,14 +2,15 @@ package com.jrtech.tools.admins.views;
 
 import com.jrtech.tools.admins.domain.Area;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Tree.ExpandEvent;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@SpringView(name = AdministrativeViewImpl.NAME)
+@UIScope
 public class AdministrativeViewImpl extends CustomComponent implements Tree.ExpandListener, AdministrativeView {
 
 	private static final long serialVersionUID = 5685759058955122548L;

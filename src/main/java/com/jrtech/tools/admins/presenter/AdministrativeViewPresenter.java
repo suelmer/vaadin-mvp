@@ -4,10 +4,11 @@ import com.jrtech.tools.admins.domain.Administrative;
 import com.jrtech.tools.admins.domain.Country;
 import com.jrtech.tools.admins.service.AdministrativeService;
 import com.jrtech.tools.admins.views.AdministrativeView;
+import com.jrtech.tools.admins.views.AdministrativeViewImpl;
+import com.jrtech.tools.admins.views.Presenter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+@Presenter(viewName = AdministrativeViewImpl.NAME)
 public class AdministrativeViewPresenter implements ViewPresenter<AdministrativeView>, AdministrativeView.AdministrativeViewListener {
 
     private AdministrativeView view;
@@ -18,7 +19,6 @@ public class AdministrativeViewPresenter implements ViewPresenter<Administrative
         this.service = service;
     }
 
-    @Autowired
     @Override
     public void setView(AdministrativeView view) {
         this.view = view;

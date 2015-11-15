@@ -9,7 +9,7 @@ public class IpViewPresenter implements ViewPresenter<IpView>, IpView.IpViewList
 
 	private IpView view;
 	
-	@Autowired
+//	@Autowired
 	@Override
 	public void setView(IpView view) {
 		this.view = view;

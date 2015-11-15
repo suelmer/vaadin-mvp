@@ -1,6 +1,8 @@
 package com.jrtech.tools.admins.views;
 
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
@@ -13,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Component;
 
-@Component
+@SpringView(name = IpViewImpl.NAME)
+@UIScope
 public class IpViewImpl extends CustomComponent implements IpView, Button.ClickListener {
 	
 	private static final long serialVersionUID = -6554545251483682858L;
