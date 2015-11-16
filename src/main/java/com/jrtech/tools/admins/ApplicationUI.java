@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 
-@SpringUI(path = "/views")
+@SpringUI(path = "/")
 @Theme("valo")
 public class ApplicationUI extends UI {
 	private static final long serialVersionUID = -5409989130902765611L;
