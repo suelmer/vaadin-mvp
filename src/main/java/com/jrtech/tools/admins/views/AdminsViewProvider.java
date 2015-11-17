@@ -16,7 +16,7 @@ public class AdminsViewProvider implements ViewProvider {
 	private ViewProvider provider;
 	
 	@Autowired
-	private HomeView homeView;
+	private HomeViewImpl homeViewImpl;
 	@Autowired
 	private AdministrativeView adminView;
 	@Autowired
@@ -26,9 +26,9 @@ public class AdminsViewProvider implements ViewProvider {
 	
 	
 	public AdminsViewProvider() {
-		this.provider = new Navigator.ClassBasedViewProvider("", HomeView.class);
+		this.provider = new Navigator.ClassBasedViewProvider("", HomeViewImpl.class);
 		
-		maps.put(HomeView.NAME, HomeView.class);
+		maps.put(HomeViewImpl.NAME, HomeViewImpl.class);
 		maps.put(AdministrativeViewImpl.NAME, AdministrativeViewImpl.class);
 		maps.put(IpViewImpl.NAME, IpView.class);
 	}
